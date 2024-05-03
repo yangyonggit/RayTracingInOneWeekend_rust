@@ -7,6 +7,8 @@ pub struct Vector3 {
     z: f64,
 }
 
+
+
 impl Vector3 {
     pub fn new(x: f64, y: f64, z: f64) -> Vector3 {
         Vector3 { x, y, z }
@@ -118,6 +120,95 @@ impl Div<f64> for Vector3 {
 impl DivAssign<f64> for Vector3 {
     fn div_assign(&mut self, scalar: f64) {
         *self = *self / scalar;
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct Color {
+    r: u8,
+    g: u8,
+    b: u8,
+}
+
+impl Color {
+    pub fn new(r: u8, g: u8, b: u8) -> Color {
+        Color { r, g, b }
+    }
+
+    pub fn new_f64(r: f64, g: f64, b: f64) -> Color {
+        Color {
+            r: (r * 255.0) as u8,
+            g: (g * 255.0) as u8,
+            b: (b * 255.0) as u8,
+        }
+    }
+
+    pub fn new_vector3(color: Vector3) -> Color {
+        Color {
+            r: (color.x() * 255.0) as u8,
+            g: (color.y() * 255.0) as u8,
+            b: (color.z() * 255.0) as u8,
+        }
+    }
+
+    pub fn r(&self) -> u8 {
+        self.r
+    }
+
+    pub fn g(&self) -> u8 {
+        self.g
+    }
+
+    pub fn b(&self) -> u8 {
+        self.b
+    }
+}
+
+impl Add for Color {
+    type Output = Color;
+
+    fn add(self, other: Color) -> Color {
+        Color::new(
+            self.r.saturating_add(other.r),
+            self.g.saturating_add(other.g),
+            self.b.saturating_add(other.b),
+        )
+    }
+}
+
+impl Sub for Color {
+    type Output = Color;
+
+    fn sub(self, other: Color) -> Color {
+        Color::new(
+            self.r.saturating_sub(other.r),
+            self.g.saturating_sub(other.g),
+            self.b.saturating_sub(other.b),
+        )
+    }
+}
+
+impl Mul<f64> for Color {
+    type Output = Color;
+
+    fn mul(self, scalar: f64) -> Color {
+        Color::new(
+            (self.r as f64 * scalar) as u8,
+            (self.g as f64 * scalar) as u8,
+            (self.b as f64 * scalar) as u8,
+        )
+    }
+}
+
+impl Div<f64> for Color {
+    type Output = Color;
+
+    fn div(self, scalar: f64) -> Color {
+        Color::new(
+            (self.r as f64 / scalar) as u8,
+            (self.g as f64 / scalar) as u8,
+            (self.b as f64 / scalar) as u8,
+        )
     }
 }
 

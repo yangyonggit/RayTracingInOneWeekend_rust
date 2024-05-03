@@ -1,5 +1,5 @@
 [package]
-name = "chapter_3"
+name = "ray_background_red_sphere"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 vectorlib = {path = "../vectorlib"}
+image = "0.23.14"
+png = "0.16.8"

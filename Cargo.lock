@@ -53,13 +53,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "chapter_3"
-version = "0.1.0"
-dependencies = [
- "vectorlib",
-]
-
-[[package]]
 name = "color_quant"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -222,6 +215,15 @@ dependencies = [
  "crc32fast",
  "deflate",
  "miniz_oxide 0.3.7",
+]
+
+[[package]]
+name = "ray_background_red_sphere"
+version = "0.1.0"
+dependencies = [
+ "image",
+ "png",
+ "vectorlib",
 ]
 
 [[package]]
